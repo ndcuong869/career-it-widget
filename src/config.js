@@ -1,2 +1,2 @@
-const root_url = 'http://127.0.0.1:5000'
+const root_url = 'http://a42f76406c2d.ngrok.io'
 export default root_url;
