@@ -1,16 +1,22 @@
 import Widget from "rasa-webchat";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useCookies } from "react-cookie";
 
 export default function CustomWidget() {
   const webchatRef = useRef(null);
-  const [cookies, setCookie] = useCookies(["user"]);
-  const payload = "/greet"
+  const payload = "/greet";
 
-  if (cookies.user !== undefined) {
-    payload = "/greatWithName"
-  }
-
+  const channel = new BroadcastChannel("app-data");
+  channel.addEventListener("message", (event) => {
+    if (event.data.is_login === true) {
+      const user_id = event.data.user_id;
+      console.log('user id: ' + user_id)
+      if (webchatRef.current && webchatRef.current.sendMessage) {
+        webchatRef.current.sendMessage('/greetWithName{"user_id": \"'+ user_id + '\"}');
+        console.log("send message");
+      }
+    }
+  });
 
   return (
     <Widget
@@ -18,7 +24,7 @@ export default function CustomWidget() {
       initPayload={payload}
       socketUrl={"http://localhost:5005"}
       customData={{ language: "en" }}
-      title="Career Chatbot"
+      title="IT Career Bot"
       subtitle="Powered by FIT-HCMUS"
       showFullScreenButton={true}
       showMessageDate={false}

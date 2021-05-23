@@ -19,6 +19,8 @@ import { Link } from "react-router-dom";
 import root_url from "../config";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+import { AutoRotatingCarousel, Slide } from "material-auto-rotating-carousel";
+import loginImage from '../assets/images/login.png'
 
 export default function LoginPage() {
   const history = useHistory();
@@ -41,11 +43,13 @@ export default function LoginPage() {
     };
 
     axios.post(root_url + "/api/login", data).then((response) => {
-      setCookie('user', response['data']['id'], {
-        path: '/'
-      })
-      history.push('/login_success')
-    })
+      setCookie("user", response["data"]["id"], {
+        path: "/",
+      });
+      const channel = new BroadcastChannel("app-data");
+      channel.postMessage({ is_login: true, user_id: response["data"]["id"] });
+      history.push("/login_success");
+    });
   };
 
   return (
@@ -55,85 +59,104 @@ export default function LoginPage() {
         className="form-login"
         variant="outlined"
       >
-        <CardHeader
-          title="IT Career Bot"
-          subheader="Powered by FIT-HCMUS"
-        ></CardHeader>
-        <CardContent>
-          <form>
-            <FormControl fullWidth variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">
-                Email
-              </InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-amount"
-                labelWidth={60}
-                onChange={updateUsername}
-                startAdornment={
-                  <InputAdornment position="start">
-                    <EmailIcon />
-                  </InputAdornment>
+        <div className="container-elements" style={{ display: "flex" }}>
+          <div className="container-images">
+            <AutoRotatingCarousel
+              label="Get started"
+              open={true}
+              style={{ position: "absolute" }}
+            >
+              <Slide
+                media={
+                  <img src={loginImage} />
                 }
+                title="This is a very cool feature"
+                subtitle="Just using this will blow your mind."
               />
-            </FormControl>
-            <div style={{ marginTop: "20px" }}></div>
-            <FormControl fullWidth variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">
-                Password
-              </InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-amount"
-                labelWidth={100}
-                type="password"
-                onChange={updatePassword}
-                startAdornment={
-                  <InputAdornment position="start">
-                    <LockIcon />
-                  </InputAdornment>
-                }
-              />
-            </FormControl>
-          </form>
-        </CardContent>
-        <CardActions>
-          <Button
-            variant="contained"
-            style={{
-              backgroundColor: "#0062e6",
-              color: "#ffffff",
-              width: "365px",
-              height: '50px',
-              marginLeft: "8px",
-            }}
-            onClick={loginHandler}
-          >
-            Login
-          </Button>
-          <div></div>
-        </CardActions>
-        <div style={{ margin: "10px" }}>
-          <Typography variant="inherit">Don't have account?</Typography>
-          <Link
-            style={{
-              marginLeft: "8px",
-              marginRight: "45px",
-            }}
-            variant="inherit"
-            href="#"
-            onClick={preventDefault}
-          >
-            Sign up
-          </Link>
+            </AutoRotatingCarousel>
+          </div>
+          <div>
+            <CardHeader
+              title="IT Career Bot"
+              subheader="Powered by FIT-HCMUS"
+            ></CardHeader>
+            <CardContent>
+              <form>
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Email
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-amount"
+                    labelWidth={60}
+                    onChange={updateUsername}
+                    startAdornment={
+                      <InputAdornment position="start">
+                        <EmailIcon />
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
+                <div style={{ marginTop: "20px" }}></div>
+                <FormControl fullWidth variant="outlined">
+                  <InputLabel htmlFor="outlined-adornment-password">
+                    Password
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-amount"
+                    labelWidth={100}
+                    type="password"
+                    onChange={updatePassword}
+                    startAdornment={
+                      <InputAdornment position="start">
+                        <LockIcon />
+                      </InputAdornment>
+                    }
+                  />
+                </FormControl>
+              </form>
+            </CardContent>
+            <CardActions>
+              <Button
+                variant="contained"
+                style={{
+                  backgroundColor: "#0062e6",
+                  color: "#ffffff",
+                  width: "365px",
+                  height: "50px",
+                  marginLeft: "8px",
+                }}
+                onClick={loginHandler}
+              >
+                Login
+              </Button>
+              <div></div>
+            </CardActions>
+            <div style={{ margin: "10px" }}>
+              <Typography variant="inherit">Don't have account?</Typography>
+              <Link
+                style={{
+                  marginLeft: "8px",
+                  marginRight: "45px",
+                }}
+                variant="inherit"
+                href="#"
+                onClick={preventDefault}
+              >
+                Sign up
+              </Link>
+            </div>
+            <Typography
+              variant="caption"
+              style={{
+                marginTop: "20px",
+                marginBottom: "20px",
+              }}
+            >
+              Copyright &copy; 2021 IT Career Bot
+            </Typography>
+          </div>
         </div>
-        <Typography
-          variant="caption"
-          style={{
-            marginTop: "20px",
-            marginBottom: "20px",
-          }}
-        >
-          Copyright &copy; 2021 IT Career Bot
-        </Typography>
       </Card>
     </div>
   );

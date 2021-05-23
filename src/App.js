@@ -6,6 +6,7 @@ import LoginSuccessPage from "./pages/login_success";
 import WebchatPage from "./pages/webchat";
 
 function App() {
+  document.title = "IT Career Bot"
   return (
     <div className="App">
       <Switch>
@@ -21,7 +22,7 @@ function App() {
           <LoginSuccessPage />
         </Route>
 
-        <Route path="/webchat">
+        <Route path="/">
           <WebchatPage />
         </Route>
       </Switch>

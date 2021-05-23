@@ -5,6 +5,7 @@ import {
   CardActions,
   CardContent,
   CardHeader,
+  Checkbox,
   FormControl,
   InputAdornment,
   InputLabel,
@@ -19,6 +20,21 @@ import WorkIcon from "@material-ui/icons/Work";
 import { Link, useHistory } from "react-router-dom";
 import DialogSkill from "../components/dialogSkill";
 import RegisterImage from "../assets/images/register.png";
+
+function renderLink() {
+  return <Link>Terms of use</Link>;
+}
+
+function renderVerifyCheckbox() {
+  return (
+    <div style={{ display: "flex", alignItems: "center", marginTop: "15px" }}>
+      <Checkbox color="primary" />
+      <Typography variant="caption">
+        I accept the {renderLink()} and Privacy policy
+      </Typography>
+    </div>
+  );
+}
 
 export default function RegisterPage() {
   const history = useHistory();
@@ -169,13 +185,24 @@ export default function RegisterPage() {
                 </Button>
               </form>
             </div>
-            <div style={{marginTop: '20px'}}>
+            <div className="verify-checkbox">{renderVerifyCheckbox()}</div>
+            <div className="container-buttons" style={{display: 'flex', marginTop: '20px'}}>
+              <Button
+                variant="contained"
+                style={{
+                  backgroundColor: "#0062e6",
+                  color: "#ffffff",
+                  width: "260px",
+                  height: '50px'
+                }}
+              >
+                Register
+              </Button>
+            </div>
+            <div style={{ marginTop: "10px" }}>
               <CardActions>
                 <Typography
                   variant="caption"
-                  style={{
-                    marginTop: "20px",
-                  }}
                 >
                   <Typography variant="inherit">
                     Already have an account?
@@ -192,16 +219,6 @@ export default function RegisterPage() {
                     Login now
                   </Link>
                 </Typography>
-                <Button
-                  variant="contained"
-                  style={{
-                    backgroundColor: "#0062e6",
-                    color: "#ffffff",
-                    width: "120px",
-                  }}
-                >
-                  Register
-                </Button>
               </CardActions>
             </div>
           </div>

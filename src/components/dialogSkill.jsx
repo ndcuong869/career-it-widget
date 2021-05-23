@@ -37,18 +37,6 @@ const renderGroupSkill = (groupName, skillList) => {
 }
 
 export default function DialogSkill({ isOpen, closeDialog }) {
-  const renderSkills = (job_title) => {
-    return (
-      <>
-        <List>
-          {["Data analysis", "Statistics"].map((item) => {
-              return renderSkillItem(item)
-          })}
-        </List>
-      </>
-    );
-  };
-
   const renderActionButtons = () => {
     return (
       <>
@@ -72,7 +60,9 @@ export default function DialogSkill({ isOpen, closeDialog }) {
             Add your existed skills to provide the best career path for you.
           </DialogContentText>
           <Grid container spacing={2}>
-              {renderGroupSkill('Technical skill', ['Data analysis', 'statistics'])}
+              {renderGroupSkill('Technical skill', ['Data analysis', 'Statistics'])}
+              {renderGroupSkill('Knowledge', ['OOP', 'Database'])}
+              {renderGroupSkill('Technology', ['C/C++', 'Python', 'Javascript', 'Tableau'])}
           </Grid>
         </DialogContent>
         <DialogActions>{renderActionButtons()}</DialogActions>

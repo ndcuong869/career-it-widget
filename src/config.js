@@ -1,2 +1,2 @@
-const root_url = 'http://a42f76406c2d.ngrok.io'
+const root_url = 'http://localhost:5000'
 export default root_url;
