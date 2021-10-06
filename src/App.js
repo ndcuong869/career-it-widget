@@ -4,6 +4,8 @@ import { Switch, Route } from "react-router-dom";
 import RegisterPage from "./pages/register";
 import LoginSuccessPage from "./pages/login_success";
 import WebchatPage from "./pages/webchat";
+import UserSkills from "./pages/user_skills";
+import RegisterSuccessPage from "./pages/register_success";
 
 function App() {
   document.title = "IT Career Bot"
@@ -20,6 +22,14 @@ function App() {
 
         <Route path="/login_success">
           <LoginSuccessPage />
+        </Route>
+
+        <Route path="/user/skills">
+          <UserSkills/>
+        </Route>
+
+        <Route path="/register_success">
+          <RegisterSuccessPage/>
         </Route>
 
         <Route path="/">

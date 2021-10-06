@@ -19,7 +19,6 @@ import { Link } from "react-router-dom";
 import root_url from "../config";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import { AutoRotatingCarousel, Slide } from "material-auto-rotating-carousel";
 import loginImage from '../assets/images/login.png'
 
 export default function LoginPage() {
@@ -47,7 +46,7 @@ export default function LoginPage() {
         path: "/",
       });
       const channel = new BroadcastChannel("app-data");
-      channel.postMessage({ is_login: true, user_id: response["data"]["id"] });
+      channel.postMessage({ is_login: true, user_id: response["data"]["id"], user_name: response["data"]["name"] });
       history.push("/login_success");
     });
   };
@@ -55,25 +54,21 @@ export default function LoginPage() {
   return (
     <div className="container-form">
       <Card
-        style={{ width: "400px", height: "390px" }}
+        style={{ width: "800px", height: "370px", padding: '20px'}}
         className="form-login"
         variant="outlined"
       >
         <div className="container-elements" style={{ display: "flex" }}>
           <div className="container-images">
-            <AutoRotatingCarousel
-              label="Get started"
-              open={true}
-              style={{ position: "absolute" }}
-            >
-              <Slide
-                media={
-                  <img src={loginImage} />
-                }
-                title="This is a very cool feature"
-                subtitle="Just using this will blow your mind."
-              />
-            </AutoRotatingCarousel>
+          <img
+              width={400}
+              height={400}
+              style={{
+                objectFit: "cover",
+                marginRight: "20px",
+              }}
+              src={loginImage}
+            />
           </div>
           <div>
             <CardHeader
@@ -137,7 +132,7 @@ export default function LoginPage() {
               <Link
                 style={{
                   marginLeft: "8px",
-                  marginRight: "45px",
+                  marginRight: "15px",
                 }}
                 variant="inherit"
                 href="#"

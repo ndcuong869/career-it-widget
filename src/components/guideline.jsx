@@ -68,7 +68,7 @@ export default function Guideline() {
             Thank you for taking the time to complete this survey.
           </Typography>
 
-          <Typography style={{ marginBottom: "20px" }}>
+          <Typography style={{ marginBottom: "10px" }} variant='caption'>
               <Link>Report if you cannot use the bot.</Link>
           </Typography>
         </div>
