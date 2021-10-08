@@ -45,8 +45,7 @@ export default function CustomWidget() {
     <Widget
       ref={webchatRef}
       initPayload={payload}
-      socketUrl={"https://services.fit.hcmus.edu.vn:251"}
-      socketPath={"/api/"}
+      socketUrl={"http://localhost:5005"}
       customData={{ language: "en" }}
       title="IT Career Bot"
       subtitle="Powered by FIT-HCMUS"
