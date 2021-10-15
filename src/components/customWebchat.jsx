@@ -2,14 +2,15 @@ import Widget from "rasa-webchat";
 import { useEffect, useRef } from "react";
 import { useCookies } from "react-cookie";
 import "../assets/css/widget.css";
+import { login_window } from "../config";
 
 export default function CustomWidget() {
   const webchatRef = useRef(null);
   const payload = "/greet";
 
   const openInNewTab = (url) => {
-    const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
-    if (newWindow) newWindow.opener = null
+    const new_window = window.open(url, '_blank', 'noopener,noreferrer')
+    if (new_window) new_window.opener = null
   }
 
   const channel = new BroadcastChannel("app-data");
@@ -45,7 +46,9 @@ export default function CustomWidget() {
     <Widget
       ref={webchatRef}
       initPayload={payload}
-      socketUrl={"http://localhost:5005"}
+      user
+      // socketUrl={"https://services.fit.hcmus.edu.vn:251"}
+      socketUrl={"http://26de-2405-4802-900b-2650-7110-b426-3986-7ac1.ngrok.io"}
       customData={{ language: "en" }}
       title="IT Career Bot"
       subtitle="Powered by FIT-HCMUS"
@@ -53,6 +56,7 @@ export default function CustomWidget() {
       showMessageDate={false}
       profileAvatar="https://i.ibb.co/wQqdKPf/chatbot-icon.png"
       onSocketEvent={{
+        'connect': () => console.log('connection established'),
         'bot_uttered': (message) => {
           console.log(message)
           if (message.text === "You are directed to the login page.")
