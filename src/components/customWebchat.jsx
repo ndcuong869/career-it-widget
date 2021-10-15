@@ -48,7 +48,7 @@ export default function CustomWidget() {
       initPayload={payload}
       user
       // socketUrl={"https://services.fit.hcmus.edu.vn:251"}
-      socketUrl={"http://26de-2405-4802-900b-2650-7110-b426-3986-7ac1.ngrok.io"}
+      socketUrl={"https://26de-2405-4802-900b-2650-7110-b426-3986-7ac1.ngrok.io"}
       customData={{ language: "en" }}
       title="IT Career Bot"
       subtitle="Powered by FIT-HCMUS"
