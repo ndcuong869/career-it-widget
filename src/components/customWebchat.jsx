@@ -48,7 +48,7 @@ export default function CustomWidget() {
       initPayload={payload}
       user
       // socketUrl={"https://services.fit.hcmus.edu.vn:251"}
-      socketUrl={"https://ed44-115-73-209-90.ngrok.io"}
+      socketUrl={"http://79c2-14-241-254-209.ngrok.io"}
       customData={{ language: "en" }}
       title="IT Career Bot"
       subtitle="Powered by FIT-HCMUS"
@@ -58,7 +58,6 @@ export default function CustomWidget() {
       onSocketEvent={{
         'connect': () => console.log('connection established'),
         'bot_uttered': (message) => {
-          console.log(message)
           if (message.text === "You are directed to the login page.")
           {
             openInNewTab("/login")
@@ -76,7 +75,7 @@ export default function CustomWidget() {
 
           if (message.text === "You are directed to the survey page.")
           {
-            openInNewTab("https://bit.ly/it_career_bot_survey")
+            openInNewTab("https://bit.ly/it_career_bot_survey_vi")
           }
       }
         ,
