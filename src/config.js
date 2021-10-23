@@ -1,3 +1,3 @@
-const root_url = 'http://localhost:5000/'
+const root_url = 'https://services.fit.hcmus.edu.vn:251/'
 export var login_window = null
 export default root_url;
