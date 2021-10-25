@@ -2,6 +2,7 @@ import { Card, CardContent } from "@material-ui/core";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import root_url from "../config";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -34,7 +35,7 @@ export const Dashboard = () => {
     const [data, setData] = useState([{'total_users': 0}])
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:5000/api/dashboard?token=' + token)
+        axios.get(root_url + '/api/dashboard?token=' + token)
         .then(response => {
             if (response.status === 200) {
                 setIsValid(true)
