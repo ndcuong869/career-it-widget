@@ -9,7 +9,6 @@ function useQuery() {
   }
 
 function renderDashboard(data) {
-    console.log(data)
     return (
         <>
         <div className="container-form">
@@ -18,9 +17,11 @@ function renderDashboard(data) {
         variant="outlined">
             <CardContent>
                 <h2>Dashboard</h2>
-                <h3>User statistics</h3>
+                <h3>{"User statistics (" + new Date().toLocaleString() + ")"}</h3>
                 <p>{"Registered users: " + data['total_users']}</p>
-                <p>{"Last active users: " + data['total_active']}</p>
+                <p>{"The number of active users in last 1 hour: " + data['total_active_1']}</p>
+                <p>{"The number of active users in last 24 hours: " + data['total_active_24']}</p>
+                <p>{"Total feedback: " + data['total_feedback'] + "/" + data['total_users']}</p>
             </CardContent>
             </Card>
         </div>
