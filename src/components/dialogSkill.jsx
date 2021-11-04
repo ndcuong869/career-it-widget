@@ -116,6 +116,7 @@ export default function DialogSkill({ isOpen, closeDialog, isUpdate, setSkills})
     axios.post(root_url + "/api/user/skills", request);
     const channel = new BroadcastChannel("app-data");
     channel.postMessage({ is_update_skills: true });
+    alert("You updated successfull. You could go back to the chatbot.")
   };
 
   const handleSkill = () => {
