@@ -83,7 +83,7 @@ export default function LoginPage() {
                   </InputLabel>
                   <OutlinedInput
                     id="outlined-adornment-amount"
-                    labelWidth={60}
+                    labelWidth={120}
                     onChange={updateUsername}
                     startAdornment={
                       <InputAdornment position="start">
