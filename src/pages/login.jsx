@@ -79,7 +79,7 @@ export default function LoginPage() {
               <form>
                 <FormControl fullWidth variant="outlined">
                   <InputLabel htmlFor="outlined-adornment-password">
-                    Email
+                    User ID/Email
                   </InputLabel>
                   <OutlinedInput
                     id="outlined-adornment-amount"
